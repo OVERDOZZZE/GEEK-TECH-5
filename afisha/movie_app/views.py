@@ -35,14 +35,11 @@ def main_detail_view(request, slug, id):
     return Response(data=serializer.data)
 
 
-
-
-
-
-
-
-
-
+@api_view(['GET'])
+def movies_and_reviews(request):
+    movie = Movie.objects.all()
+    serializer = MoviesAndReviews(movie, many=True)
+    return Response(data=serializer.data)
 
 
 
