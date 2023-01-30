@@ -32,5 +32,5 @@ class MoviesAndReviews(serializers.ModelSerializer):
 
     class Meta:
         model = Movie
-        fields = 'title movies_reviews average_rate' .split()
+        fields = 'title movies_reviews average_rate'.split()
 

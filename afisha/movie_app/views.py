@@ -1,11 +1,34 @@
 from django.shortcuts import render
+from django.views import generic
+from rest_framework import viewsets, mixins
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.viewsets import GenericViewSet
+
 from .serializers import *
 from .models import *
 
 # Create your views here.
 
+
+class DirectorViewSet(viewsets.mixins.CreateModelMixin,
+                   mixins.RetrieveModelMixin,
+                   mixins.UpdateModelMixin,
+                   mixins.DestroyModelMixin,
+                   mixins.ListModelMixin,
+                   GenericViewSet):
+    queryset = Director.objects.all()
+    serializer_class = DirectorSerializer
+
+
+class ReviewViewSet(viewsets.ModelViewSet):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
+
+
+class MovieViewSet(viewsets.ModelViewSet):
+    queryset = Movie.objects.all()
+    serializer_class = MovieSerializer
 
 @api_view(['GET'])
 def main_view(request, slug):
